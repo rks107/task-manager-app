@@ -165,7 +165,7 @@ textarea {
 }
 input {
   font-size: 25px;
-  width: 130px;
+  width: 135px;
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
@@ -258,29 +258,45 @@ input {
 }
 
   form{
-    width: 90vw;
+    width: 320px;
     margin: 5px auto;
   }
 
   textarea{
-    width: 100%;
+    width: 95%;
+    margin: 1px auto;
   }
-
+  input{
+    margin: 2px 8px;
+  }
   .calendar{
     width: 80vw;
     margin: 5px auto;
   }
+  .container__DateByTasks{
+  margin: 10px auto;
+  width: 400px;
+}
+.container__DateByTasks > div{
+  justify-content: center;
+}
   .availabeTask{
-    width: 90vw;
+    width: 350px;
     margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .task__deleteIcon{
-  left: 70vw;
+  left: 230px;
   }
 }
 
 @media only screen and (max-width: 450px) {
+  availabeTask{
+    width: 330px;
+  }
   .task__deleteIcon{
   left: 60vw;
   }
