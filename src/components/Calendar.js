@@ -41,7 +41,7 @@ function App({ value, onChange, tasks }) {
                 key={di}
                 className='day'
                 onClick={() => {
-                  if (day < moment(new Date()).startOf("day")) return;
+                  // if (day < moment(new Date()).startOf("day")) return;
                   onChange(day);
                 }}>
                 <div style={{backgroundColor:findColor(day)}} className={dayStyles(day, value)}>

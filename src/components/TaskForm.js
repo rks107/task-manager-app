@@ -2,56 +2,75 @@ import React, { useState } from "react";
 import firebase from "../firebase";
 
 const TaskForm = ({ value, tasks }) => {
-  const [taskName, setTaskName] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
+  function handleTextarea(e) {
+    setDescription(e.target.value);
+  }
   function handleInput(e) {
-    setTaskName(e.target.value);
+    setTitle(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (taskName === "") {
-      alert("Please Assign some name to Task...");
+    if (title === "" || description === "") {
+      alert("Please Assign some title or description to Task...");
     } else {
       const task = {
-        name: taskName,
+        title: title,
+        description: description,
         date: value.format("MM/DD/YYYY"),
         color: randomColor,
       };
 
-      let obj = tasks.find((o) => o.date === value.format("MM/DD/YYYY"));
-      if(obj){
+      let obj = tasks.find((o) => o.title === title);
+      if (obj) {
         task.color = obj.color;
       }
-      
 
       var db = firebase.firestore();
       db.collection("tasks")
         .add(task)
         .then((docRef) => {
-          // console.log("Product Added: ", docRef);
+          console.log("Product Added: ", docRef);
         })
         .catch((err) => {
           console.log("Error: ", err);
         });
 
-      setTaskName("");
+      setTitle("");
+      setDescription("");
     }
+  }
+  function closeNav(e) {
+    document.getElementById("myNav").style.height = "0%";
   }
 
   return (
-    <div>
-      <form>
+    <div id='myNav' className='overlay'>
+      <p className='closebtn' onClick={(e) => closeNav(e)}>
+        &times;{" "}
+      </p>
+      <p className="heading">About Event</p>
+      <form className='overlay-content'>
+        <input
+          type='text'
+          placeholder='Title'
+          onChange={(e) => handleInput(e)}
+          value={title}
+        />
         <textarea
           type='text'
-          placeholder='Task name'
-          onChange={(e) => handleInput(e)}
-          value={taskName}
+          placeholder='Description...'
+          onChange={(e) => handleTextarea(e)}
+          value={description}
         />
         <input
+          className="date"
           placeholder='Select task initial date'
           value={value.format("MM/DD/YYYY")}
         />

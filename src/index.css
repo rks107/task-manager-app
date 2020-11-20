@@ -12,9 +12,9 @@ code {
     monospace;
 }
 .App{
-  display: flex;
+  /* display: flex;
   margin: 10px;
-  justify-content: space-around;
+  justify-content: space-around; */
 }
 
 .btn {
@@ -30,45 +30,90 @@ code {
   margin: 5px 10px;
 }
 
-/* Calendar */
-.container__calendar{
+/* navbar */
+.navbar{
+  height: 8vh;
+  box-shadow: 0 0 5px black;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 10px; */
 }
+
+.navbar__icon{
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 25px;
+  font-weight: 800;
+}
+.navbar__profile{
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.navbar__profile p{
+  font-size: 18px;
+  font-weight: 500;
+}
+.navbar__profile img{
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* container */
+.container{
+  display: flex;
+  justify-content: space-between;
+  /* height: 100vh; */
+  margin: 5px auto;
+  background: #F2F2F2;
+}
+
+/* Calendar */
+
+.container__calendar{
+margin: 5px 20px;
+width: 330px;
+/* height: 707px; */
+}
+
 .calendar {
-  box-sizing: border-box;
-  font-size: 1rem;
-  max-width: 400px;
-  background-color: brown;
-  color: aliceblue;
-  padding: 10px;
-  border-radius: 10px;
-  margin-right: 10px;
-  max-height: 500px;
+position: relative;
+width: 330px;
+height: 367px;
+background: #DC3D21;
+border-radius: 15px;
 }
 
 .calendar .header {
-  background-color: var(--light-blue);
-  text-align: center;
-  min-height: 2rem;
-  line-height: 2rem;
+  width: 270px;
+  height: 20px; 
   color: var(--black);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 700;
+  font-family: 'robot';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: -0.25px;
+  color: #FFFFFF;
+  padding: 20px;
   display: flex;
-  font-size: 25px;
-  padding: 5px;
 }
-
+.calendar .body {
+  width: 300px;
+height: 256px;
+background: #FFFFFF;
+box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+border-radius: 10px;
+margin: auto;
+}
 .calendar .day-names {
   display: flex;
   flex-wrap: wrap;
   max-width: 1000px;
   margin: 0 auto;
   align-items: center;
-}
-
-.calendar .body {
-  border-radius: 10px;
 }
 
 .calendar .header .previous {
@@ -132,9 +177,9 @@ code {
   color: grey;
 }
 
-.calendar .day div.before:hover {
+/* .calendar .day div.before:hover {
   cursor: not-allowed;
-}
+} */
 
 .calendar .day div.selected {
   background-color: red;
@@ -147,13 +192,61 @@ code {
   background-color: grey;
 }
 
+/* taskForm */
+
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+
+.details{
+  width: 600px;
+  height: 600px;
+  border: 1px solid red;
+  margin: 5px auto;
+}
+
+.overlay-content {
+  position: relative;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay p {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay p:hover, .overlay p:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
 
 form {
-  margin: 10px;
-  padding: 10px;
-  background-color: lightgray;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 textarea {
   font-size: 25px;
@@ -165,10 +258,14 @@ textarea {
 }
 input {
   font-size: 25px;
-  width: 135px;
+  width: 185px;
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
+  border-radius: 5px;
+}
+.date{
+  width: 135px;
 }
 .btn__submit{
   background-color: green;
@@ -184,13 +281,59 @@ input {
 
 /* Availabe Tasks component */
 .availabeTask{
-  width: 450px;
+  /* width: 900px; */
+  height: 809px;
+  margin-right: 10px;
+  /* border: 1px solid black; */
+}
+.months{
+  display: flex;
+  overflow: scroll;
+  height: 809px;
+  width: 1000px;
+  overflow-y: hidden;
+}
+.weeks{
+  display: flex;
+  /* width: 900px; */
+}
+.days{
+  text-align: end;
+  padding: 10px;
+  width: 150px;
+  border-right: 1px dotted lightgray;
+}
+
+.event{
+  margin-top: 60px;
+  /* border: 1px solid red; */
+  height: 60px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: whitesmoke;
+  box-shadow: 0 1px 10px rgba(19, 18, 18, 0.5);
+  border-radius: 10px;
+}
+
+.event__colorCode{
+  position: relative;
+  left: 5px;
+  height: 40px;
+  width: 5px;
+}
+.event__detail{
+  /* min-width: 200px; */
+}
+.event__detail_title{
+
 }
 
 .task{
   background-color: lightgray;
   padding: 2px 10px;
-  width: 100%;
+  width: 90%;
   border-radius: 8px;
   margin-bottom: 8px;
   box-shadow: 0 0 5px black;
@@ -215,8 +358,8 @@ input {
 }
 
 /* DateByTasks */
-.container__DateByTasks{
-  margin: 15px auto;
+.container__projects{
+  margin: 50px auto;
   width: 850px;
 }
 .heading{
@@ -226,24 +369,48 @@ input {
   color: brown;
   text-align: center;
 }
-.container__DateByTasks > div {
-  display: flex;
-  flex-wrap: wrap;
-}
 
 .counter{
-  width: 250px;
-  margin: 5px;
+  width: 310px;
+  height: 90px;
+  margin: 10px 5px;
   padding: 5px;
   border-radius: 5px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 1px 5px black;
   font-size: 18px;
   font-weight: 300;
+  display: flex;
+  justify-content: space-around;
+}
+.colorCode{
+  margin: 35px 20px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.counter__details{
+  margin: 20px 0px;
+  position: relative;
+  right: 40px;
 }
 .counter span{
   color: rgba(61, 59, 59, 0.9);
   font-weight: 600;
   font-size: 22px;
+}
+.counter__details .title{
+  font-weight: 400;
+  font-size: 22px;
+}
+.counter__details .count{
+  font-weight: 300;
+  font-size: 12px;
+}
+.counter__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* For Small Screens */

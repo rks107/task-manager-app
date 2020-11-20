@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import { Calendar, TaskForm, Task, DateByTasks } from "./";
+import { Calendar, TaskForm, Task, DateByTasks, Navbar } from "./";
 import firebase from "../firebase";
 
 
@@ -30,43 +30,49 @@ function App() {
         .doc(id)
         .delete()
         .then(function () {
-          // console.log("Document successfully deleted!");
+          console.log("Document successfully deleted!");
         })
         .catch(function (error) {
           console.error("Error removing document: ", error);
         });
     }
 
-  return (
-    <div className='App'>
-      <div className='container'>
-        <div className='container__calendar'>
-          <Calendar
-            value={selectedDate}
-            onChange={setSelectedDate}
-            tasks={tasks}
-          />
+  function openNav(e) {
+    document.getElementById("myNav").style.height = "100%";
+  }
+    return (
+      <div className='App'>
+        <TaskForm value={selectedDate} tasks={tasks} />
 
-          <TaskForm value={selectedDate} tasks={tasks} />
-        </div>
-        <div className='container__DateByTasks'>
-          <p className='heading'>Available Tasks Categories by Dates</p>
-          <DateByTasks tasks={tasks} />
+        <Navbar />
+
+        <div className='container'>
+          <div className='container__calendar'>
+            <button onClick={(e) => openNav(e)} className='btn'>
+              Create +
+            </button>
+
+            <Calendar
+              value={selectedDate}
+              onChange={setSelectedDate}
+              tasks={tasks}
+            />
+
+            <div className='container__projects'>
+              <DateByTasks tasks={tasks} value={selectedDate} />
+            </div>
+          </div>
+
+          <div className='availabeTask'>
+            <Task
+              tasks={tasks}
+              value={selectedDate}
+              handleDeleteTask={handleDeleteTask}
+            />
+          </div>
         </div>
       </div>
-
-      <div className='availabeTask'>
-        <h3 className='heading'>Available Tasks</h3>
-        {tasks.length === 0 ? (
-          <p>0 Tasks Available</p>
-        ) : (
-          tasks.map((task, index) => (
-            <Task task={task} key={index} handleDeleteTask={handleDeleteTask} />
-          ))
-        )}
-      </div>
-    </div>
-  );
+    );
 }
 
 

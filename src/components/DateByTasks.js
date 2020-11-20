@@ -1,47 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import filterTasks from '../helper/filterTasks'
+import { TaskDetails } from "./";
 
-const DateByTasks = ({tasks}) => {
-    const counter = {};
+const DateByTasks = ({ tasks, value }) => {
+  const countTask = filterTasks(tasks);
+  const [event, setEvent] = useState();
 
-    tasks.forEach(function (obj) {
-      var key = JSON.stringify(obj.date);
-      counter[key] = (counter[key] || 0) + 1;
-    });
-    
-    const counterTask = [];
+  function openNav(e, item) {
+    document.getElementById("eventDetails").style.height = "100%";
+    setEvent(item);
+  }
 
-    for (const item in counter) {
-        const temp = {
-          date: item.substring(1, item.length-1),
-          count: counter[item],
-          color: findColor(item)
-        };
+  return (
+    <div>
+      <TaskDetails event={event} tasks={tasks} value={value} />
 
-        counterTask.push(temp);
-    }
-
-    function findColor(day) {
-        const daya = day.substring(1, day.length-1);
-        // console.log(daya);
-      let obj = tasks.find((o) => o.date === daya);
-      if (obj) {
-        const color = "#" + obj.color;
-        return color;
-      }
-      return null;
-    }
-
-     return (
-       <div>
-         {counterTask.map((item) => (
-           <div className='counter' style={{ backgroundColor: item.color }}>
-             Date: <span> {item.date}</span> &nbsp; 
-             Tasks:<span> {item.count}</span>
-           </div>
-         ))}
-       </div>
-     );
-    
+      {countTask.map((item) => (
+        <div onClick={(e) => openNav(e, item)} className='counter'>
+          <div
+            className='colorCode'
+            style={{ backgroundColor: item.color }}></div>
+          <div className='counter__details'>
+            <span className='title'> {item.title}</span> <br />
+            <span className='count'> {item.count} Tasks</span>
+          </div>
+          <div className='counter__info'>...</div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default DateByTasks;

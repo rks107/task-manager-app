@@ -36,11 +36,13 @@ src
 │   ├── DateByTasks.js
 │   ├── Calender.js
 │   ├── Task.js
+│   ├── TaskDetails.js
 │   ├── TaskForm.js
 │   └── Header.js
 ├── helper
 │   ├── buildCalendar.js
-│   └── dayStyles.js
+│   ├── dayStyles.js
+│   └── filterTasks.js
 ├── index.css
 └── index.js
 ```

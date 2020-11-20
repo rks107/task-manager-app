@@ -2,8 +2,12 @@ function isSelected(day, value) {
   return value.isSame(day, "day");
 }
 
-export function beforeToday(day) {
-  return day.isBefore(new Date(), "day");
+export function beforeAndAfterCurrentMonth(day, value) {
+  
+  return (
+    day.isBefore(value.clone().startOf("month"), "day") ||
+    day.isAfter(value.clone().endOf("month"), "day")
+  );
 }
 
 function isToday(day) {
@@ -11,7 +15,7 @@ function isToday(day) {
 }
 
 export default function dayStyles(day, value) {
-  if (beforeToday(day)) return "before";
+  if (beforeAndAfterCurrentMonth(day, value)) return "before";
   if (isSelected(day, value)) return "selected";
   if (isToday(day)) return "today";
   return "";
