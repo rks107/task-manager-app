@@ -4,6 +4,7 @@ import firebase from "../firebase";
 const TaskForm = ({ value, tasks }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [participant, setParticipant] = useState("");
 
   var randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
@@ -12,6 +13,9 @@ const TaskForm = ({ value, tasks }) => {
   }
   function handleInput(e) {
     setTitle(e.target.value);
+  }
+  function handleParticipantName(e){
+    setParticipant(e.target.value);
   }
 
   function handleSubmit(e) {
@@ -25,6 +29,7 @@ const TaskForm = ({ value, tasks }) => {
         description: description,
         date: value.format("MM/DD/YYYY"),
         color: randomColor,
+        participant: participant,
       };
 
       let obj = tasks.find((o) => o.title === title);
@@ -44,8 +49,10 @@ const TaskForm = ({ value, tasks }) => {
 
       setTitle("");
       setDescription("");
+      setParticipant("");
     }
   }
+  
   function closeNav(e) {
     document.getElementById("myNav").style.height = "0%";
   }
@@ -55,7 +62,7 @@ const TaskForm = ({ value, tasks }) => {
       <p className='closebtn' onClick={(e) => closeNav(e)}>
         &times;{" "}
       </p>
-      <p className="heading">About Event</p>
+      <p className='heading'>About Event</p>
       <form className='overlay-content'>
         <input
           type='text'
@@ -70,7 +77,13 @@ const TaskForm = ({ value, tasks }) => {
           value={description}
         />
         <input
-          className="date"
+          type='text'
+          placeholder='Participant'
+          onChange={(e) => handleParticipantName(e)}
+          value={participant}
+        />
+        <input
+          className='date'
           placeholder='Select task initial date'
           value={value.format("MM/DD/YYYY")}
         />

@@ -59,7 +59,11 @@ function App() {
             />
 
             <div className='container__projects'>
-              <DateByTasks tasks={tasks} value={selectedDate} />
+              <DateByTasks
+                tasks={tasks}
+                value={selectedDate}
+                handleDeleteTask={handleDeleteTask}
+              />
             </div>
           </div>
 

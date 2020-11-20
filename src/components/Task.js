@@ -2,12 +2,7 @@ import React from 'react';
 import buildCalendar from '../helper/buildCalendar';
 import filterTasks from "../helper/filterTasks";
 
-const Task = ({ value, tasks, handleDeleteTask }) => {
-   
-    // function handleDeleteTaskClick(){
-    //     console.log(task.id);
-    //     handleDeleteTask(task.id);
-    // }
+const Task = ({ value, tasks }) => {
 
     const calender = buildCalendar(value);
     const events = filterTasks(tasks);
@@ -21,7 +16,7 @@ const Task = ({ value, tasks, handleDeleteTask }) => {
       var days = hours * 24;
       var y = Math.round(d / days);
       var z = Math.round(d2 / days);
-      console.log(y-z);
+      // console.log(y-z);
       return y-z;
     }
 
@@ -44,7 +39,7 @@ const Task = ({ value, tasks, handleDeleteTask }) => {
             style={{
               top: ei * 80,
               minWidth: 110 * event.range + 100,
-              left: findStartDay(event.startDate) * 90 - 5990,
+              left: findStartDay(event.startDate) * 90 - 5960,
             }}>
             <div
               className='event__colorCode'

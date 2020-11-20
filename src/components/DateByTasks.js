@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import filterTasks from '../helper/filterTasks'
 import { TaskDetails } from "./";
 
-const DateByTasks = ({ tasks, value }) => {
+const DateByTasks = ({ tasks, value, handleDeleteTask }) => {
   const countTask = filterTasks(tasks);
   const [event, setEvent] = useState();
 
@@ -13,7 +13,12 @@ const DateByTasks = ({ tasks, value }) => {
 
   return (
     <div>
-      <TaskDetails event={event} tasks={tasks} value={value} />
+      <TaskDetails
+        event={event}
+        tasks={tasks}
+        value={value}
+        handleDeleteTask={handleDeleteTask}
+      />
 
       {countTask.map((item) => (
         <div onClick={(e) => openNav(e, item)} className='counter'>

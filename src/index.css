@@ -37,7 +37,6 @@ code {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* margin-bottom: 10px; */
 }
 
 .navbar__icon{
@@ -207,12 +206,7 @@ margin: auto;
   transition: 0.5s;
 }
 
-.details{
-  width: 600px;
-  height: 600px;
-  border: 1px solid red;
-  margin: 5px auto;
-}
+
 
 .overlay-content {
   position: relative;
@@ -240,6 +234,45 @@ margin: auto;
   top: 20px;
   right: 45px;
   font-size: 60px;
+  cursor: pointer;
+}
+.details{
+  width: 600px;
+  height: 600px;
+  border: 1px solid red;
+  margin: 5px auto;
+  color: whitesmoke;
+}
+.details>div>p{
+  text-align: center;
+  
+}
+.eventTitle{
+  color: darkblue;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.description__participant{
+  display: flex;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: -4px;
+}
+.description{
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  color: #818181;
+  padding: 8px;
+  border-radius: 5px;
+  align-items: center;
+}
+.description___text{
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 form {
@@ -280,11 +313,11 @@ input {
 }
 
 /* Availabe Tasks component */
+
+
 .availabeTask{
-  /* width: 900px; */
   height: 809px;
   margin-right: 10px;
-  /* border: 1px solid black; */
 }
 .months{
   display: flex;
@@ -295,7 +328,6 @@ input {
 }
 .weeks{
   display: flex;
-  /* width: 900px; */
 }
 .days{
   text-align: end;
@@ -306,7 +338,6 @@ input {
 
 .event{
   margin-top: 60px;
-  /* border: 1px solid red; */
   height: 60px;
   position: relative;
   display: flex;
