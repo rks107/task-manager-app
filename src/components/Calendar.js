@@ -14,10 +14,14 @@ function App({ value, onChange, tasks }) {
 
 
   function findColor(day){
-    
-    let obj = tasks.find((o) => o.date === day.format("MM/DD/YYYY"));
+    let obj = tasks.find(
+      (o) =>
+        Date.parse(o.startDate.date) <= Date.parse(day.format("MM/DD/YYYY")) &&
+        Date.parse(o.endDate.date) >= Date.parse(day.format("MM/DD/YYYY"))
+    );
+
       if(obj){
-        // console.log(day.format("MM/DD/YYYY"), obj.color);
+        // console.log("obj", day.format("MM/DD/YYYY"), obj.color);
         const color = "#" + obj.color;
         return color;
       }

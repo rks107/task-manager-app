@@ -12,14 +12,17 @@ function App() {
     useEffect(() => {
       
       var db = firebase.firestore();
-      db.collection("tasks").orderBy("date").onSnapshot((snapshot) => {
-        const tasks = snapshot.docs.map((doc) => {
-          const data = doc.data();
-          data["id"] = doc.id;
-          return data;
+      db.collection("tasks")
+        .orderBy("startDate.day")
+        .onSnapshot((snapshot) => {
+          const tasks = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            data["id"] = doc.id;
+            return data;
+          });
+          console.log(tasks);
+          setTasks(tasks);
         });
-        setTasks(tasks);
-      });
         
     }, []);
 

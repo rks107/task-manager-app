@@ -79,7 +79,7 @@ width: 330px;
 }
 
 .calendar {
-position: relative;
+/* position: relative; */
 width: 330px;
 height: 367px;
 background: #DC3D21;
@@ -89,7 +89,6 @@ border-radius: 15px;
 .calendar .header {
   width: 270px;
   height: 20px; 
-  color: var(--black);
   font-family: 'robot';
   font-weight: 400;
   font-style: normal;
@@ -148,7 +147,7 @@ margin: auto;
 }
 
 .calendar .day {
-  position: relative;
+  /* position: relative; */
   width: calc(100% / 7);
   height: 44px;
   display: inline-block;
@@ -163,7 +162,7 @@ margin: auto;
 .calendar .day div {
   width: 40px;
   height: 40px;
-  position: relative;
+  /* position: relative; */
   color: black;
   z-index: 100;
   line-height: 40px;
@@ -284,18 +283,22 @@ form {
 textarea {
   font-size: 25px;
   width: 500px;
-  height: 180px;
+  height: 100px;
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
+  background-color: rgb(36, 35, 35);
+  color: #F2F2F2;
 }
 input {
   font-size: 25px;
-  width: 185px;
+  width: 500px;
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
-  border-radius: 5px;
+  background-color: rgb(36, 35, 35);
+  border-bottom: 1px solid lightgray;
+  color: #F2F2F2;
 }
 .date{
   width: 135px;
@@ -353,12 +356,6 @@ input {
   left: 5px;
   height: 40px;
   width: 5px;
-}
-.event__detail{
-  /* min-width: 200px; */
-}
-.event__detail_title{
-
 }
 
 .task{
@@ -498,4 +495,15 @@ input {
   .task__deleteIcon{
   left: 60vw;
   }
+}
+
+
+.tasksDate{
+  display: flex;
+  margin-bottom: 80px;
+}
+
+.tasksDate img{
+  margin-top: -180px;
+  cursor: pointer;
 }

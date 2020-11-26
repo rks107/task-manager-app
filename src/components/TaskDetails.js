@@ -16,7 +16,7 @@ const TaskDetails = ({ event, tasks, value, handleDeleteTask }) => {
                 const temp = {
                   description: task.description,
                   id: task.id,
-                  participant: task.participant,
+                  participants: task.participants,
                 };
                 arr.push(temp)
             }
@@ -39,25 +39,34 @@ const TaskDetails = ({ event, tasks, value, handleDeleteTask }) => {
       {event ? (
         <div className='details' style={{ backgroundColor: event.color }}>
           <div>
-            <p className="eventTitle">{event.title}</p>
+            <p className='eventTitle'>{event.title}</p>
             <p>
               ( {value.format("MMMM").substring(0, 3)}{" "}
-              {event.startDate.substring(3, 5)} -{" "}
-              {value.format("MMMM").substring(0, 3)}{" "}
-              {event.endDate.substring(3, 5)} )
+              {parseInt(event.startDate.substring(3, 5)) < 10
+                ? event.startDate.substring(3, 4)
+                : event.startDate.substring(3, 5)}{" "}
+              - {value.format("MMMM").substring(0, 3)}{" "}
+              {parseInt(event.endDate.substring(3, 5)) < 10
+                ? event.endDate.substring(3, 4)
+                : event.endDate.substring(3, 5)}{" "}
+              )
             </p>
           </div>
           <div>
             <div className='description__participant'>
               <p> Event Description</p>
-              <p>Participant</p>
+              <p>Participants</p>
             </div>
             {eventDescriptionWithSameTitle(tasks, event).map((eventDes, di) => (
               <div className='description' key={di}>
                 <spn>{di + 1}.</spn> &nbsp;
                 <div className='description___text'>
                   <span>{eventDes.description}</span>
-                  <span>{eventDes.participant}</span>
+                  <span>
+                    {eventDes.participants.map((participant) => (
+                      <span>{participant}, &nbsp;</span>
+                    ))}
+                  </span>
                   <span>
                     <img
                       alt='Delete'

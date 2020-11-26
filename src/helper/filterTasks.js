@@ -1,4 +1,5 @@
 export default function filterTasks(tasks){
+  // console.log(tasks);
 const counter = {};
 
 tasks.forEach(function (obj) {
@@ -19,7 +20,7 @@ for (const title in counter) {
     endDate: findEndDate(cropTitle),
   };
 
-  temp["range"] = findEventDateRange(temp.startDate, temp.endDate);
+  // temp["range"] = findEventDateRange(temp.startDate, temp.endDate);
 
   countTask.push(temp);
 }
@@ -36,10 +37,10 @@ function findColor(title) {
 function findStartDate(title) {
   let obj = tasks.find((o) => o.title === title);
   
-  let sd = obj.date;
+  let sd = obj.startDate.date;
   tasks.forEach((task) => {
-    if (task.title === title && task.date < sd) {
-      sd = task.date;
+    if (task.title === title && Date.parse(task.startDate.date) < Date.parse(sd)) {
+      sd = task.startDate.date;
     }
   })
   
@@ -49,27 +50,27 @@ function findStartDate(title) {
 function findEndDate(title) {
   let obj = tasks.find((o) => o.title === title);
 
-  let ed = obj.date;
+  let ed = obj.endDate.date;
   tasks.forEach((task) => {
-    if (task.title === title && task.date > ed) {
-      ed = task.date;
+    if (task.title === title && Date.parse(task.endDate.date) > Date.parse(ed)) {
+      ed = task.endDate.date;
     }
   });
 
   return ed;
 }
 
-function findEventDateRange(startDay, endDay) {
-  var d = Date.parse(startDay);
-  var d2 = Date.parse(endDay);
-  var minutes = 1000 * 60;
-  var hours = minutes * 60;
-  var days = hours * 24;
-  var y = Math.round(d / days);
-  var z = Math.round(d2 / days);
+// function findEventDateRange(startDay, endDay) {
+//   var d = Date.parse(startDay);
+//   var d2 = Date.parse(endDay);
+//   var minutes = 1000 * 60;
+//   var hours = minutes * 60;
+//   var days = hours * 24;
+//   var y = Math.round(d / days);
+//   var z = Math.round(d2 / days);
   
-  return z-y+1;
-}
+//   return z-y+1;
+// }
 
 return countTask;
 }
